@@ -1,0 +1,49 @@
+<aura:component controller="LookUpController"
+  implements="forceCommunity:availableForAllPageTypes,flexipage:availableForAllPageTypes">
+  <aura:attribute name="label" type="String" required="true" />
+  <aura:attribute name="iconName" type="String" required="true" />
+  <aura:attribute name="objectApiName" type="String" required="true" />
+  <aura:attribute name="fieldApiName" type="String" required="true" />
+  <aura:attribute name="selectedElementId" type="Id" />
+  <!-- Borrar -->
+  <aura:attribute name="selectedElementName" type="String" />
+  <aura:attribute name="searchCriteria" type="String" />
+  <aura:attribute name="results" type="LookUpController.SearchElement[]" />
+  <aura:attribute name="isSelected" type="Boolean" default="false" />
+
+  <aura:handler event="c:EvtLookUpItemSelected" action="{!c.handleSelection}" />
+  <aura:handler event="c:EvtLookUpInitialize" action="{!c.doInit}" />
+  <!-- <aura:handler name="init" action="{!c.doInit}" value="{!this}"/> -->
+
+  <div class="slds-form-element slds-lookup slds-is-open">
+    <div class="slds-text-title">{!v.label}</div>
+      <div class="slds-grid slds-form-element__control slds-input-has-icon slds-input-has-icon--right slds-picklist__input">
+        <lightning:buttonIcon aura:id="icSearchClose"
+          class="slds-button slds-input__icon slds-text-color--default"
+          iconName="utility:search" variant="bare" onclick="{!c.tryToClear}"
+          alternativeText="Limpiar resultados."/>
+          <ui:inputText aura:id="itxtCriteria"
+            value="{!v.searchCriteria}"
+            class="slds-input"
+            updateOn="keyup"
+            keyup="{!c.tryToSearch}"/>
+      </div>
+      <div aura:id="divResults" class="above slds-hide">
+        <div class="slds-grid slds-grid--align-center slds-text-heading--small">
+          {!v.results.length + ' resultado(s)'}
+        </div>
+        <ul>
+          <!-- Resultados -->
+          <aura:iteration items="{!v.results}" var="result">
+            <li class="slds-lookup__item-action slds-media" role="presentation">
+              <!-- Componente usado para guardar Id y Nombre de cada resultado -->
+              <c:LookUpResultItem elementId="{!result.elementId}"
+                elementName="{!result.elementName}"
+                iconName="{!v.iconName}"
+                fieldApiName="{!v.fieldApiName}"/>
+            </li>
+          </aura:iteration>
+        </ul>
+      </div>
+    </div>
+</aura:component>

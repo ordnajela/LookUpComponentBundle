@@ -1,0 +1,13 @@
+<aura:component >
+  <aura:attribute name="elementId" type="Id" />
+  <aura:attribute name="elementName" type="String" />
+  <aura:attribute name="iconName" type="String" />
+  <aura:attribute name="fieldApiName" type="String" />
+
+  	<span class="slds-lookup__item-action slds-media" role="option" onclick="{!c.tryToSelect}">
+      <lightning:icon iconName="{!v.iconName}" size="x-small"/>
+      <div class="slds-media__body">
+          <div class="slds-lookup__result-text">{!v.elementName}</div>
+      </div>
+    </span>
+</aura:component>

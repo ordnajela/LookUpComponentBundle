@@ -1,0 +1,38 @@
+<aura:component implements="force:appHostable" controller="TestingController">
+  <aura:attribute name="contacto" type="Contact"
+    default="{
+    'Id' : '0033600000QJaXQAA1',
+    'Account' : {
+      'Id' : '0013600000PgoHcAAJ',
+      'Name' : 'GenePoint'
+      },
+      'ReportsTo' : {
+      'Id' : '0033600000HzSv1AAF',
+      'Name' : 'Tim Barr'
+      },
+    'AccountId' : '0013600000PgoHcAAJ',
+    'ReportsToId' : '0033600000HzSv1AAF'
+    }"/>
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+  <aura:handler event="c:EvtLookUpItemSelected" action="{!c.showAlert}" />
+
+    <div class="slds-grid">
+      <div class="slds-col">
+        <p>{!'ID   = '+v.contacto.AccountId}</p>
+        <c:LookUp label="Cuenta"
+          iconName="standard:account"
+          objectApiName="Account"
+          selectedElementId="{!v.contacto.AccountId}"
+          fieldApiName="AccountId"/>
+      </div>
+      <div class="slds-col">
+        <p>{!'ID   = '+v.contacto.ReportsToId}</p>
+        <c:LookUp label="Supervisor"
+          iconName="standard:contact"
+          objectApiName="Contact"
+          selectedElementId="{!v.contacto.ReportsToId}"
+          fieldApiName="ReportsToId"/>
+        <p>blablablablabla</p>
+      </div>
+    </div>
+</aura:component>

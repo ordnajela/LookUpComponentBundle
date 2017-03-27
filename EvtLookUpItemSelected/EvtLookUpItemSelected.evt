@@ -1,0 +1,7 @@
+<aura:event type="APPLICATION"
+  description="Llamado al seleccionar un LookUpResultItem, recibido en el componente padre para modificar un campo en el objeto.">
+  <aura:attribute name="isClear" type="Boolean"/>
+  <aura:attribute name="fieldApiName" type="String"/>
+  <aura:attribute name="fieldElementId" type="Id"/>
+  <aura:attribute name="fieldElementName" type="String"/>
+</aura:event>

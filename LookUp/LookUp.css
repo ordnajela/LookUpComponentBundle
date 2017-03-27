@@ -1,0 +1,8 @@
+.THIS .above{
+  position: absolute;
+  z-index: 1;
+  width: 15rem;
+  background-color: rgb(255,255,255);
+  border: solid 1px;
+  text-overflow: ellipsis;
+}
